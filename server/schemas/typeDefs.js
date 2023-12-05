@@ -32,13 +32,13 @@ const typeDefs = `
     }
 
     type Query {
-        me(_id: String, username: String): User
+        me(_id: String, username: String): User 
     }
 
     type Mutation {
-        createUser(username: String!, email: String!, password String!): Auth
+        createUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
-        saveBook(content: BookarrayInput!): User
+        saveBook(content: BookArrayInput!): User
         deleteBook(bookId: String!): User
     }
 `;

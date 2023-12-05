@@ -9,9 +9,9 @@ import {
 } from 'react-bootstrap';
 
 import Auth from '../utils/auth';
-import { saveBook, searchGoogleBooks } from '../utils/API';
+import { searchGoogleBooks } from '../utils/API';
 import { saveBookIds, getSavedBookIds } from '../utils/localStorage';
-import { ADD_BOOK } from '../utils/mutations';
+import {ADD_BOOK} from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 
 const SearchBooks = () => {
@@ -29,6 +29,7 @@ const SearchBooks = () => {
     return () => saveBookIds(savedBookIds);
   });
 
+  //mutation for graphQL/apollo for saving book to db
   const [addBook, {mutationError}] = useMutation(ADD_BOOK);
 
   // create method to search for books and set state on form submit
@@ -76,18 +77,26 @@ const SearchBooks = () => {
     }
 
     try {
-        const responseFromMutation = await addBook({
-          variables: {
-            content: bookToSave
-          }
-        });
-        console.log(responseFromMutation);
+      //the old RESTful API call
+      // const response = await saveBook(bookToSave, token);
+
+      // if (!response.ok) {
+      //   throw new Error('something went wrong!');
+      // }
+
+      //the new graphql mutation
+      const responseFromMutation = await addBook({
+        variables: {
+          content:bookToSave
+        }
+      });
+      console.log(responseFromMutation);
 
       // if book successfully saves to user's account, save book id to state
       setSavedBookIds([...savedBookIds, bookToSave.bookId]);
     } catch (err) {
       console.error(err);
-      console.log("Mutation error on attempting to save book follows:");
+      console.log('Mutation error on attempting to save book follows:');
       console.log(mutationError);
     }
   };

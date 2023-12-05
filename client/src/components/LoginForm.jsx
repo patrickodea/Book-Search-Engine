@@ -5,7 +5,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 //import { loginUser } from '../utils/API';
 import Auth from '../utils/auth';
 
-import { LOGIN } from "../utils/mutations";
+import { LOGIN } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 
 const LoginForm = () => {
@@ -31,12 +31,22 @@ const LoginForm = () => {
     }
 
     try {
-          const {data} = await login({
-            variables:{
-              email:userFormData.email,
-              password:userFormData.password
-            }
-          });
+      //old RESTful API call to login
+      // const response = await loginUser(userFormData);
+
+      // if (!response.ok) {
+      //   throw new Error('something went wrong!');
+      // }
+
+      // const { token, user } = await response.json();
+
+      //graphql mutation replacement of above API call
+      const {data} = await login({
+        variables:{
+          email:userFormData.email,
+          password:userFormData.password
+        }
+      });
 
       Auth.login(data.login.token);
     } catch (err) {

@@ -1,7 +1,7 @@
-import {gql} from "@apollo/client";
-
+import {gql} from '@apollo/client';
+//query to get the current logged in user's info and all of their saved books
 export const QUERY_ME = gql`
-    query me{
+    query me {
         me {
             _id
             username
@@ -14,4 +14,5 @@ export const QUERY_ME = gql`
                 title
             }
         }
-    }`;
+    }
+`;

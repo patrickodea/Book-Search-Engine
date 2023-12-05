@@ -6,6 +6,7 @@ import App from './App.jsx'
 import SearchBooks from './pages/SearchBooks'
 import SavedBooks from './pages/SavedBooks'
 
+//your standard react routes
 const router = createBrowserRouter([
   {
     path: '/',

@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "google API book search engine server",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -8,14 +8,14 @@
     "watch": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "https://www.github.com/jrapich",
+  "license": "MIT",
   "dependencies": {
     "@apollo/server": "^4.9.5",
     "bcrypt": "^5.1.1",
-    "dotenv": "16.3.1",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "graphql":"16.8.1",
+    "graphql": "^16.8.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.0"
   },

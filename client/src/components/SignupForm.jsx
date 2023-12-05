@@ -4,7 +4,7 @@ import { Form, Button, Alert } from 'react-bootstrap';
 //import { createUser } from '../utils/API';
 import Auth from '../utils/auth';
 
-import { useMutation } from "@apollo/client";
+import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
 
 const SignupForm = () => {
@@ -33,10 +33,19 @@ const SignupForm = () => {
     }
 
     try {
-          const {data} = await createUser({
-            variables: {...userFormData}
-          });
+      //old RESTful API call to create a user
+      // const response = await createUser(userFormData);
 
+      // if (!response.ok) {
+      //   throw new Error('something went wrong!');
+      // }
+
+      // const { token, user } = await response.json();
+
+      //graphql mutation to replace the API call above
+      const {data} = await createUser({
+        variables: {...userFormData}
+      });
 
       Auth.login(data.createUser.token);
     } catch (err) {
